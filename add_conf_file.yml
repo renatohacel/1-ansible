@@ -1,0 +1,15 @@
+---
+
+- name: Use template for copy file of configuration
+  hosts: all
+  become: true
+  tasks:
+    - name: Get system information
+      ansible.builtin.setup:
+
+    - name: Template configuration file
+      ansible.builtin.template:
+        src: configuration.conf.j2
+        dest: "/home/user1/configuration.conf"
+        owner: user1
+        mode: '0644'

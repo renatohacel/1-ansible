@@ -1,0 +1,38 @@
+---
+
+- name: Add user and configs
+  hosts: all
+  become: true
+  vars:
+    user_name: user1
+    user_group: mygroup
+  tasks:
+    - name: Install updates
+      ansible.builtin.apt:
+        upgrade: dist
+        update_cache: true
+
+    - name: Add group
+      ansible.builtin.group:
+        name: "{{ user_group }}"
+        state: present
+
+    - name: Add new user
+      ansible.builtin.user:
+        name: "{{ user_name }}"
+        group: "{{ user_group }}"
+
+    - name: Create directory .ssh, if no exists
+      ansible.builtin.file:
+        path: "/home/{{ user_name }}/.ssh"
+        state: directory
+        mode: '0700'
+        owner: "{{ user_name }}"
+        group: "{{ user_group }}"
+
+    - name: Generate SSH key
+      community.crypto.openssh_keypair:
+        path: "/home/{{ user_name }}/.ssh/id_rsa"
+        type: rsa
+        state: present
+      register: ssh_key

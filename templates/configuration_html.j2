@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resumen del Sistema</title>
+</head>
+<body>
+    <h1>Resumen del Sistema</h1>
+    <p>Sistema Operativo: {{ ansible_distribution }} {{ ansible_distribution_version }}</p>
+    <p>Memoria RAM: {{ ansible_memtotal_mb }} MB</p>
+    <p>Procesadores: {{ ansible_processor_cores }}</p>
+    <p>Espacio en Disco: {{ ansible_mounts[0].size_total / (1024*1024) }} MB</p>
+</body>
+</html>

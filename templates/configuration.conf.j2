@@ -1,0 +1,4 @@
+Sistema Operativo: {{ ansible_distribution }} {{ ansible_distribution_version }}
+Memoria RAM: {{ ansible_memtotal_mb }} MB
+Procesadores: {{ ansible_processor_cores }}
+Espacio en Disco: {{ ansible_mounts[0].size_total / (1024*1024) }} MB
