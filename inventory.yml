@@ -1,0 +1,14 @@
+all:
+  hosts:
+    server1:
+      ansible_host: 10.100.1.221
+      ansible_port: 2223
+      ansible_python_interpreter: /usr/bin/python3
+    server2:
+      ansible_host: 10.100.1.221
+      ansible_port: 2224
+      ansible_python_interpreter: /usr/bin/python3
+    server3:
+      ansible_host: 10.100.1.221
+      ansible_port: 2225
+      ansible_python_interpreter: /usr/bin/python3

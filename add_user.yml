@@ -7,11 +7,6 @@
     user_name: user1
     user_group: mygroup
   tasks:
-    - name: Install updates
-      ansible.builtin.apt:
-        upgrade: dist
-        update_cache: true
-
     - name: Add group
       ansible.builtin.group:
         name: "{{ user_group }}"

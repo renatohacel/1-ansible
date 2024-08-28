@@ -5,10 +5,18 @@
   become: true
   tasks:
     - name: Install Apache
-      ansible.builtin.apt:
+      ansible.builtin.package:
         name: apache2
         state: present
         update_cache: true
+
+    - name: Create directory html
+      ansible.builtin.file:
+        path: "/var/www/html/"
+        state: directory
+        mode: '0700'
+        owner: "user1"
+        group: "mygroup"
 
     - name: Copy template to index.html
       ansible.builtin.template:
