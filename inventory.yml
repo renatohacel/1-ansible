@@ -12,3 +12,12 @@ all:
       ansible_host: 10.100.1.221
       ansible_port: 2225
       ansible_python_interpreter: /usr/bin/python3
+    windows_hosts:
+      ansible_host: 10.100.1.224
+  vars:
+    ansible_user: ansible
+    ansible_password: D1tr4.2o22
+    ansible_port: 5986
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+    ansible_winrm_server_cert_validation: ignore

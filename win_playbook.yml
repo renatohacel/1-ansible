@@ -1,0 +1,14 @@
+---
+- name: Playbook básico para Windows
+  hosts: windows_hosts
+  tasks:
+    - name: Verificar la conectividad
+      ansible.windows.win_ping:
+
+    - name: Obtener información del sistema
+      ansible.windows.win_command: systeminfo
+      register: system_info
+
+    - name: Mostrar la información del sistema
+      ansible.builtin.debug:
+        var: system_info.stdout_lines
