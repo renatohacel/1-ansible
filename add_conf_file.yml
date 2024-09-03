@@ -1,7 +1,7 @@
 ---
 
 - name: Use template for copy file of configuration
-  hosts: all
+  hosts: linux_hosts
   become: true
   tasks:
     - name: Get system information

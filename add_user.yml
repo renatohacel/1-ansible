@@ -1,7 +1,7 @@
 ---
 
 - name: Add user and configs
-  hosts: all
+  hosts: linux_hosts
   become: true
   vars:
     user_name: user1
