@@ -1,7 +1,7 @@
 ---
 
 - name: Install Apache and copy html
-  hosts: linux_hosts
+  hosts: all
   become: true
   tasks:
     - name: Install Apache

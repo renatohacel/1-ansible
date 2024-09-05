@@ -1,6 +1,6 @@
 ---
 - name: Playbook básico para Windows
-  hosts: windows_hosts
+  hosts: all
   become: true
   tasks:
     - name: Verificar la conectividad
