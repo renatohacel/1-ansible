@@ -1,6 +1,8 @@
 ---
 - name: Playbook básico para Windows
-  hosts: all
+  hosts: "{{ target_hosts | default('all') }}"
+  vars:
+    target_host: windows_hosts
   tasks:
     - name: Verificar la conectividad
       ansible.windows.win_ping:
