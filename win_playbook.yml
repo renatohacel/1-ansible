@@ -1,8 +1,6 @@
 ---
 - name: Playbook básico para Windows
-  hosts: "{{ target_hosts | default('all') }}"
-  vars:
-    target_host: windows_hosts
+  hosts: all
   tasks:
     - name: Verificar la conectividad
       ansible.windows.win_ping:
@@ -10,7 +8,9 @@
     - name: Obtener información del sistema
       ansible.windows.win_command: systeminfo
       register: system_info
+      when: ansible_os_family == "Windows"
 
     - name: Mostrar la información del sistema
       ansible.builtin.debug:
         var: system_info.stdout_lines
+      when: ansible_os_family == "Windows"
