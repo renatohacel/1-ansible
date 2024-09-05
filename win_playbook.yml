@@ -8,9 +8,9 @@
     - name: Obtener información del sistema
       ansible.windows.win_command: systeminfo
       register: system_info
-      when: ansible_os_family == "Windows"
+      when: ansible_os_family != "Alpine"
 
     - name: Mostrar la información del sistema
       ansible.builtin.debug:
         var: system_info.stdout_lines
-      when: ansible_os_family == "Windows"
+      when: ansible_os_family != "Alpine"

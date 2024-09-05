@@ -13,4 +13,4 @@
         dest: "/home/user1/configuration.conf"
         owner: user1
         mode: '0644'
-      when: ansible_os_family != "Windows"
+      when: ansible_os_family == "Alpine"
