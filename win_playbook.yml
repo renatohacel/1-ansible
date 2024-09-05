@@ -1,7 +1,6 @@
 ---
 - name: Playbook básico para Windows
   hosts: all
-  become: true
   tasks:
     - name: Verificar la conectividad
       ansible.windows.win_ping:
