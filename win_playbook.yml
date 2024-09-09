@@ -5,12 +5,7 @@
     - name: Verificar la conectividad
       ansible.windows.win_ping:
 
-    - name: Obtener información del sistema
-      ansible.windows.win_command: systeminfo
-      register: system_info
-      when: ansible_os_family == "Windows"
-
-    - name: Mostrar la información del sistema
-      ansible.builtin.debug:
-        var: system_info.stdout_lines
-      when: ansible_os_family == "Windows"
+    - name: Crear archivo de texto en el escritorio con el mensaje
+      ansible.windows.win_copy:
+        content: "{{ var_text }}"
+        dest: "C:\\Users\\{{ ansible_user }}\\Desktop\\mensaje.txt"
