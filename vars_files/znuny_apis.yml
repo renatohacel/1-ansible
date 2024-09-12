@@ -1,0 +1,32 @@
+znuny_tasks_path: "{{ project_root }}/playbooks/znuny/tasks"
+session_id:
+tasks:
+  update_ticket: "update_ticket.yml"
+
+znuny_base_url: http://10.100.1.127
+znuny_url: "{{ znuny_base_url }}/znuny/nph-genericinterface.pl/Webservice"
+znuny_index: "{{ znuny_base_url }}/znuny/index.pl?"
+znuny_webservice:
+  care: care
+  ticket_rest: Ticket REST API
+znuny_urls:
+  ticket_id: "{{ znuny_index }}Action=AgentTicketZoom;TicketID={{ '{{ TicketID }}'}}"
+znuny_apis:
+  care:
+    login: "{{ znuny_url }}/{{ znuny_webservice.care }}/login"
+    ticket:
+      create: "{{ znuny_url }}/{{ znuny_webservice.care }}/Ticket/Create"
+      item: "{{ znuny_url }}/{{ znuny_webservice.care }}/Ticket/{{ '{{ TicketID }}'}}"
+      search: "{{ znuny_url }}/{{ znuny_webservice.care }}/Ticket/Search/"
+      to_update: "{{ znuny_url }}/{{ znuny_webservice.care }}/Ticket/{{ '{{ TicketID }}'}}/Update"
+  ticket_rest:
+    session:
+      create: "{{ znuny_url }}/{{ znuny_webservice.ticket_rest }}/Session"
+      item: "{{ znuny_url }}/{{ znuny_webservice.ticket_rest }}/Session/{{ '{{ SessionID }}'}}"
+    ticket:
+      create: "{{ znuny_url }}/{{ znuny_webservice.ticket_rest }}/Ticket"
+      list: "{{ znuny_url }}/{{ znuny_webservice.ticket_rest }}/TicketList"
+      item: "{{ znuny_url }}/{{ znuny_webservice.ticket_rest }}/Ticket/{{ '{{ TicketID }}'}}"
+      history: "{{ znuny_url }}/{{ znuny_webservice.ticket_rest }}/TicketHistory/{{ '{{ TicketID }}'}}"
+      search: "{{ znuny_url }}/{{ znuny_webservice.ticket_rest }}/Ticket/"
+      update: "{{ znuny_url }}/{{ znuny_webservice.ticket_rest }}/Ticket/{{ '{{ TicketID }}'}}"

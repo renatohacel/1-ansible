@@ -1,0 +1,44 @@
+---
+
+- name: Use template for copy file of configuration
+  hosts: "{{ target_host | default('all') }}"
+  become: true
+  vars_files:
+    - "{{ project_root }}/vars_files/znuny_apis.yml"
+    - "{{ project_root }}/playbooks/linux/secrets.yml"
+  vars:
+    project_root: "../../.."
+  tasks:
+    - name: Crear archivo de texto en el directorio home con el mensaje
+      ansible.builtin.copy:
+        content: "{{ var_text }}"
+        dest: "/home/user1/mensaje.txt"
+        mode: '0644'
+    - name: Get session_id if not defined
+      when: not session_id
+      no_log: true
+      ansible.builtin.include_tasks:
+        file: "{{ znuny_tasks_path }}/create_session_id.yml"
+      vars:
+        znuny_user: "{{ znuny_user }}"
+        znuny_password: "{{ znuny_password }}"
+    - name: Se notifica inizializacion del proceso a Znuny
+      block:
+        - name: Set auto process ticket as processing status
+          # no_log: true
+          ansible.builtin.include_tasks:
+            file: "{{ znuny_tasks_path }}/ticket_update.yml"
+          vars:
+            body:
+              SessionID: "{{ session_id }}"
+              DynamicField:
+                - Name: AutoStatus
+                  Value: processing
+      rescue:
+        - name: Se estable el error encontrado
+          ansible.builtin.set_fact:
+            error_code: "Error al conectar con el sistema de process management"
+            error_detail: |
+              El ticket no pudo ser actualizado.
+              Es posible que el error se deba a problemas de red o de permisos de acceso al objeto solicitado.
+            log_error: "{{ response }}"
