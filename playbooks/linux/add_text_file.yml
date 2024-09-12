@@ -8,7 +8,6 @@
     - "{{ project_root }}/vaults/znuny_user.yml"
   vars:
     project_root: "../.."
-    var_text: somethign
   tasks:
     - name: Crear archivo de texto en el directorio home con el mensaje
       ansible.builtin.copy:
