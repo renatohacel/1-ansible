@@ -1,0 +1,10 @@
+---
+collections:
+  - name: ditra.cisco
+    source: git@gitlab.com:ditramx/ditra.cisco.git
+    type: git
+  # - name: community.general
+  # - name: cisco.ios
+  # - name: awx.awx
+  # - name: fortinet.fortios
+    # version: 2.1.4 # 2.1.4 for version 6
