@@ -5,7 +5,7 @@
   become: true
   vars_files:
     - "{{ project_root }}/vars_files/znuny_apis.yml"
-    - "{{ project_root }}/playbooks/linux/secrets.yml"
+    - "1-ansible/playbooks/linux/secrets.yml"
   vars:
     project_root: "../.."
   tasks:
