@@ -15,7 +15,7 @@
         dest: "/home/user1/mensaje.txt"
         mode: '0644'
     - name: Get session_id if not defined
-      when: not session_id
+      #when: not session_id
       #no_log: true
       ansible.builtin.include_tasks:
         file: "{{ znuny_tasks_path }}/create_session_id.yml"
