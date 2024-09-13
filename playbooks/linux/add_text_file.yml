@@ -31,6 +31,7 @@
               DynamicField:
                 - Name: AutoStatus
                   Value: processing
+              TicketID: "{{ ticket_id }}"
       rescue:
         - name: Se estable el error encontrado
           ansible.builtin.set_fact:
