@@ -1,7 +1,6 @@
 ---
 - name: Use template for copy file of configuration
   hosts: linux_hosts
-  become: true
   gather_facts: false
   vars_files:
     - "{{ project_root }}/vars_files/znuny_apis.yml"
