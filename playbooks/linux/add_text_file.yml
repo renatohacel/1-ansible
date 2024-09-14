@@ -7,6 +7,9 @@
     - "{{ project_root }}/vaults/znuny_user.yml"
   vars:
     project_root: "../.."
+
+    # Znuny vars
+    TicketID: "{{ ticket_id }}"
   tasks:
     - name: Crear archivo de texto en el directorio home con el mensaje
       ansible.builtin.copy:
@@ -31,7 +34,6 @@
               DynamicField:
                 - Name: AutoStatus
                   Value: processing
-              TicketID: "{{ ticket_id }}"
       rescue:
         - name: Se estable el error encontrado
           ansible.builtin.set_fact:
