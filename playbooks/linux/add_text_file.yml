@@ -17,7 +17,7 @@
         content: "{{ var_text }}"
         dest: "/home/user1/mensaje.txt"
         mode: '0644'
-        become: yes
+        become: true
         become_user: user1
 
     - name: Get session_id if not defined
