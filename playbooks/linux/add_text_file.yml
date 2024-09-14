@@ -9,6 +9,7 @@
     project_root: "../.."
 
     # Znuny vars
+    validate_certs: false
     TicketID: "{{ ticket_id }}"
   tasks:
     - name: Crear archivo de texto en el directorio home con el mensaje
