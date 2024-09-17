@@ -12,12 +12,6 @@
     validate_certs: false
     TicketID: "{{ ticket_id }}"
   tasks:
-    - name: Crear archivo de texto en el directorio home con el mensaje
-      ansible.builtin.copy:
-        content: "{{ var_text }}"
-        dest: "/home/user1/mensaje.txt"
-        mode: '0644'
-
     - name: Get session_id if not defined
       when: not session_id
       ansible.builtin.include_tasks:
@@ -35,6 +29,33 @@
               DynamicField:
                 - Name: AutoStatus
                   Value: processing
+      rescue:
+        - name: Se estable el error encontrado
+          ansible.builtin.set_fact:
+            error_code: "Error al conectar con el sistema de process management"
+            error_detail: |
+              El ticket no pudo ser actualizado.
+              Es posible que el error se deba a problemas de red o de permisos de acceso al objeto solicitado.
+            log_error: "{{ response }}"
+            
+    - name: Crear archivo de texto en el directorio home con el mensaje
+      ansible.builtin.copy:
+        content: "{{ var_text }}"
+        dest: "/home/user1/mensaje.txt"
+        mode: '0644'
+
+    - name: Se finaliza el proceso del ticket Znuny
+      block:
+        - name: Set auto process ticket as processing status
+          # no_log: true
+          ansible.builtin.include_tasks:
+            file: "{{ znuny_tasks_path }}/ticket_update.yml"
+          vars:
+            body:
+              SessionID: "{{ session_id }}"
+              DynamicField:
+                - Name: AutoStatus
+                  Value: completed
       rescue:
         - name: Se estable el error encontrado
           ansible.builtin.set_fact:
