@@ -40,7 +40,7 @@
     - name: Crear archivo de texto en el directorio home con el mensaje
       ansible.builtin.copy:
         content: "{{ var_text }}"
-        dest: "/home/user1/mensaje1.txt"
+        dest: "/config/mensaje1.txt"
 
     - name: Se finaliza el proceso del ticket Znuny
       block:
