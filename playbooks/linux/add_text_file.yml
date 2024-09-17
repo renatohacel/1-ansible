@@ -42,7 +42,7 @@
       ansible.builtin.copy:
         content: "{{ var_text }}"
         dest: "/home/user1/mensaje.txt"
-        mode: '0777'
+        mode: '0644'
 
     - name: Se finaliza el proceso del ticket Znuny
       block:
