@@ -1,7 +1,6 @@
 ---
 - name: Crear archivo de texto dinamico con znuny
   hosts: linux_hosts
-  gather_facts: false
   vars_files:
     - "{{ project_root }}/vars_files/znuny_apis.yml"
     - "{{ project_root }}/vaults/znuny_user.yml"
