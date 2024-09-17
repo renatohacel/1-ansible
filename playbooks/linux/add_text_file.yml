@@ -17,7 +17,6 @@
         content: "{{ var_text }}"
         dest: "/home/user1/mensaje.txt"
         mode: '0644'
-        owner: user1
 
     - name: Get session_id if not defined
       when: not session_id
